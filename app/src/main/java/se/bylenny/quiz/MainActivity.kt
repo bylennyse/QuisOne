@@ -37,14 +37,18 @@ class MainActivity : AppCompatActivity() {
     private fun switchFragment(tag: String, fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
+            .disallowAddToBackStack()
             .replace(R.id.contentFragment, fragment, tag)
             .commitNow()
     }
 
     override fun onBackPressed() {
-        if (!viewModel.onBackPressed()) {
-            super.onBackPressed()
-        }
+        viewModel.onBackPressed()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.onPause()
     }
 
 }

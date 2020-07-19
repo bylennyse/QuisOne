@@ -107,6 +107,7 @@ class QuizRepository @Inject constructor(
     }
 
     fun stopQuiz() {
+        stopTimer()
         appRepository.stopQuiz()
         answers = mutableListOf()
         alternativesVisibility.value = SHOW_ALL

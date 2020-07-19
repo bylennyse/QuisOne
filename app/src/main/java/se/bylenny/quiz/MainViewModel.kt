@@ -2,13 +2,17 @@ package se.bylenny.quiz
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
-import javax.inject.Singleton
+import se.bylenny.quiz.views.quiz.QuizRepository
 
 class MainViewModel @ViewModelInject constructor(
-    @Singleton val appRepository: AppRepository
+    private val quizRepository: QuizRepository,
+    val appRepository: AppRepository
 ) : ViewModel() {
-    fun onBackPressed(): Boolean =
-        (appRepository.appState == AppRepository.AppState.Quiz).also { handle ->
-            if (handle) appRepository.stopQuiz()
-        }
+    fun onBackPressed() {
+        quizRepository.stopQuiz()
+    }
+
+    fun onPause() {
+        quizRepository.stopQuiz()
+    }
 }
