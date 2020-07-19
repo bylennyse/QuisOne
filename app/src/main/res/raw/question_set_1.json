@@ -1,5 +1,4 @@
 {
-  "name": "Test quiz 1",
   "questions": [
     {
       "id": "q1",
@@ -111,6 +110,126 @@
     },
     {
       "id": "q10",
+      "type": "text",
+      "text": "How many hours are there in one day?",
+      "correctAnswer": 2,
+      "alternatives": [
+        "18",
+        "22",
+        "24",
+        "22"
+      ]
+    },
+    {
+      "id": "q11",
+      "type": "text",
+      "text": "Which is the world's highest mountain that is completely above sea level?",
+      "correctAnswer": 0,
+      "alternatives": [
+        "Mount Everest",
+        "Mount Olympus",
+        "Mount Kilimanjaro",
+        "Denali"
+      ]
+    },
+    {
+      "id": "q12",
+      "type": "image",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Cluster_Ballooning.jpg",
+      "correctAnswer": 0,
+      "alternatives": [
+        "Alt 1",
+        "Alt 2",
+        "Alt 3",
+        "Alt 4"
+      ]
+    },
+    {
+      "id": "q13",
+      "type": "text",
+      "text": "Which is the largest bird?",
+      "correctAnswer": 0,
+      "alternatives": [
+        "Ostrich",
+        "Swan",
+        "Emu",
+        "Pigeon"
+      ]
+    },
+    {
+      "id": "q14",
+      "type": "image",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/0/09/Tropicana_field_from_air.JPG",
+      "correctAnswer": 0,
+      "alternatives": [
+        "Tropicana Field",
+        "Alt 2",
+        "Alt 3",
+        "Alt 4"
+      ]
+    },
+    {
+      "id": "q15",
+      "type": "image",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Cluster_Ballooning.jpg",
+      "correctAnswer": 3,
+      "alternatives": [
+        "Alt 1",
+        "Alt 2",
+        "Alt 3",
+        "Alt 4"
+      ]
+    },
+    {
+      "id": "q16",
+      "type": "image",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/1/14/Proton_Zvezda_crop.jpg",
+      "correctAnswer": 2,
+      "alternatives": [
+        "Toy rocket",
+        "Vulcan rocket",
+        "Proton rocket",
+        "Sonda rocket"
+      ]
+    },
+    {
+      "id": "q17",
+      "type": "text",
+      "text": "Where are your taste buds?",
+      "correctAnswer": 3,
+      "alternatives": [
+        "in your ear",
+        "on your fingertips",
+        "on your face",
+        "on your tongue"
+      ]
+    },
+    {
+      "id": "q18",
+      "type": "image",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Cluster_Ballooning.jpg",
+      "correctAnswer": 0,
+      "alternatives": [
+        "Alt 1",
+        "Alt 2",
+        "Alt 3",
+        "Alt 4"
+      ]
+    },
+    {
+      "id": "q19",
+      "type": "image",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Cluster_Ballooning.jpg",
+      "correctAnswer": 0,
+      "alternatives": [
+        "Alt 1",
+        "Alt 2",
+        "Alt 3",
+        "Alt 4"
+      ]
+    },
+    {
+      "id": "q20",
       "type": "text",
       "text": "How many hours are there in one day?",
       "correctAnswer": 2,
