@@ -26,6 +26,7 @@ class ImageViewModel(
 
     val moreTimeEnabled: LiveData<Boolean> = quizRepository.hasLifeLineMoreTime
     val removeTwoEnabled: LiveData<Boolean> = quizRepository.hasLifelineRemoveTwo
+    val replaceEnabled: LiveData<Boolean> = quizRepository.hasLifeLineReplaceQuestion
 
     val isAlternativeEnabled: LiveData<List<Boolean>> = quizRepository.isAlternativesEnabled
 
@@ -35,6 +36,10 @@ class ImageViewModel(
 
     fun onRemoveTwoClicked() {
         quizRepository.useLifeLineRemoveTwo()
+    }
+
+    fun onReplaceClicked() {
+        quizRepository.useLifeLineReplaceQuestion()
     }
 
     fun onAnswerClicked(answer: Int) {

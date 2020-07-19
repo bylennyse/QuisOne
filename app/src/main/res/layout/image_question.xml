@@ -125,16 +125,30 @@
             />
 
         <ImageButton
-            android:id="@+id/lifeLineTime"
+            android:id="@+id/lifeLineReplace"
             style="@style/AppTheme.Button.Icon"
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
+            android:src="@drawable/ic_autorenew_white_24dp"
+            android:enabled="@{safeUnbox(viewModel.replaceEnabled)}"
+            android:onClick="@{() -> viewModel.onReplaceClicked()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <ImageButton
+            android:id="@+id/lifeLineTime"
+            style="@style/AppTheme.Button.Icon"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="8dp"
             android:src="@drawable/ic_more_time_white_24dp"
             android:enabled="@{safeUnbox(viewModel.moreTimeEnabled)}"
             android:onClick="@{() -> viewModel.onMoreTimeClicked()}"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/lifeLineReplace"
             app:layout_constraintTop_toTopOf="parent"
             />
 

@@ -42,6 +42,7 @@ class QuizRepository @Inject constructor(
     private var startTime: Long = 0
     private var endTime: Long = 0
 
+    private val replaceQuestion: MutableLiveData<Boolean> = MutableLiveData(true)
     private val moreTime: MutableLiveData<Boolean> = MutableLiveData(true)
     private val removeTwo: MutableLiveData<Boolean> = MutableLiveData(true)
 
@@ -56,6 +57,7 @@ class QuizRepository @Inject constructor(
 
     val isAlternativesEnabled: LiveData<List<Boolean>> = alternativesVisibility
 
+    val hasLifeLineReplaceQuestion: LiveData<Boolean> = replaceQuestion
     val hasLifeLineMoreTime: LiveData<Boolean> = moreTime
     val hasLifelineRemoveTwo: LiveData<Boolean> = removeTwo
 
@@ -67,6 +69,11 @@ class QuizRepository @Inject constructor(
     fun useLifeLineRemoveTwo() {
         removeTwo.value = false
         hideTwoAlternatives()
+    }
+
+    fun useLifeLineReplaceQuestion() {
+        replaceQuestion.value = false
+        //TODO replace question
     }
 
     val result: MutableLiveData<Result> = MutableLiveData()
