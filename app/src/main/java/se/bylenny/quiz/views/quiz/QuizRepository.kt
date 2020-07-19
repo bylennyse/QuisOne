@@ -1,6 +1,5 @@
 package se.bylenny.quiz.views.quiz
 
-import android.app.Application
 import android.os.SystemClock
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -23,7 +22,7 @@ import kotlin.math.max
 class QuizRepository @Inject constructor(
     private val appRepository: AppRepository,
     private val questionRepository: QuestionRepository,
-    application: Application
+    private val vibrator: Vibrator
 ) {
     companion object {
         private const val TIMEOUT_MS: Int = 10 * 1000
@@ -32,8 +31,6 @@ class QuizRepository @Inject constructor(
         private const val VIBRATING_SECONDS: Int = 3
         private val SHOW_ALL = listOf(true, true, true, true)
     }
-
-    private val vibrator = Vibrator(application)
 
     private val disposables = CompositeDisposable()
 
@@ -123,10 +120,6 @@ class QuizRepository @Inject constructor(
         val page = question.number
         val pages = questions.size
         return "$page/$pages"
-    }
-
-    fun dispose() {
-        disposables.clear()
     }
 
     private fun replaceQuestion(question: Question) {

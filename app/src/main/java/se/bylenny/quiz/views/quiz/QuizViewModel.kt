@@ -27,8 +27,4 @@ class QuizViewModel @ViewModelInject constructor(
                 }
                 .plus(ResultViewModel(quizRepository))
         }
-
-    override fun onCleared() {
-        quizRepository.dispose()
-    }
 }

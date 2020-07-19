@@ -1,0 +1,2 @@
+Do we continue quiz in background?
+Do we reset time when the question is replaced?
