@@ -9,15 +9,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class BindingAdapter(
-    items: List<RecyclableItem> = emptyList()
+class PageBindingAdapter(
+    private var listItems: List<RecyclableItem> = emptyList()
 ) : RecyclerView.Adapter<BindingViewHolder<ViewDataBinding>>() {
 
     companion object {
         private val LOADED_MARKER = Any()
     }
-
-    private var listItems: List<RecyclableItem> = items.toList()
 
     private val rebindCallback = object : OnRebindCallback<ViewDataBinding>() {
         override fun onPreBind(binding: ViewDataBinding?): Boolean {

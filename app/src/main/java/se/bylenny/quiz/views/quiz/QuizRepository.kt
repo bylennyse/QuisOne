@@ -29,14 +29,13 @@ class QuizRepository @Inject constructor(
         private const val TIMEOUT_MS: Int = 10 * 1000
         private const val UPDATE_INTERVAL_MS: Long = 50L
         private const val LIFELINE_TIME_MS: Long = 10 * 1000L
-        private const val VIBRATING_SECONDS: Int = 5
+        private const val VIBRATING_SECONDS: Int = 3
         private val SHOW_ALL = listOf(true, true, true, true)
     }
 
     private val vibrator = Vibrator(application)
 
     private val disposables = CompositeDisposable()
-
 
     private var answers: MutableList<Answer> = mutableListOf()
     private var startTime: Long = 0
@@ -52,8 +51,13 @@ class QuizRepository @Inject constructor(
 
     val timeLeft: MutableLiveData<Long> = MutableLiveData(0)
 
-    var questions: List<Question> = emptyList()
-        private set
+    val pages: MutableLiveData<List<Question>> = MutableLiveData()
+
+    private var questions: List<Question> = emptyList()
+        set(value) {
+            field = value
+            pages.value = value
+        }
 
     val isAlternativesEnabled: LiveData<List<Boolean>> = alternativesVisibility
 
@@ -71,9 +75,9 @@ class QuizRepository @Inject constructor(
         hideTwoAlternatives()
     }
 
-    fun useLifeLineReplaceQuestion() {
+    fun useLifeLineReplaceQuestion(question: Question) {
         replaceQuestion.value = false
-        //TODO replace question
+        replaceQuestion(question)
     }
 
     val result: MutableLiveData<Result> = MutableLiveData()
@@ -104,6 +108,7 @@ class QuizRepository @Inject constructor(
         alternativesVisibility.value = SHOW_ALL
         moreTime.value = true
         removeTwo.value = true
+        replaceQuestion.value = true
         question.value = 0
     }
 
@@ -115,6 +120,16 @@ class QuizRepository @Inject constructor(
 
     fun dispose() {
         disposables.clear()
+    }
+
+    private fun replaceQuestion(question: Question) {
+        val index: Int = questions.indexOf(question)
+        val newQuestions = questions.toMutableList()
+        val excludeIds = questions.map { it.id }
+        newQuestions.removeAt(index)
+        val newQuestion = questionRepository.getQuestions(1, excludeIds).first()
+        newQuestions.add(index, newQuestion)
+        questions = newQuestions
     }
 
     private fun hideTwoAlternatives() {

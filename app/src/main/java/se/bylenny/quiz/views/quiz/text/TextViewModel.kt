@@ -11,10 +11,12 @@ import java.util.concurrent.TimeUnit
 
 class TextViewModel(
     val question: Question.Text,
-    private val quizRepository: QuizRepository
+    private val quizRepository: QuizRepository,
+    private val index: Int
 ) : RecyclableItem(R.layout.text_question) {
 
-    override fun getItemId(): Any = question.id
+    override fun getItemId(): Any = index
+    override fun getDataId(): Any = question.id
 
     val interactionEnabled: MutableLiveData<Boolean> = MutableLiveData(true)
 
@@ -39,7 +41,7 @@ class TextViewModel(
     }
 
     fun onReplaceClicked() {
-        quizRepository.useLifeLineReplaceQuestion()
+        quizRepository.useLifeLineReplaceQuestion(question)
     }
 
     fun onAnswerClicked(answer: Int) {

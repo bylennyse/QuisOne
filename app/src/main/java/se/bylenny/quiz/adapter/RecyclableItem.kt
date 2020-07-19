@@ -7,5 +7,5 @@ open class RecyclableItem(
     val layoutResId: Int
 ) {
     open fun getItemId(): Any = this::class
-    open fun getDataId(): Any = this::class
+    open fun getDataId(): Any = layoutResId
 }

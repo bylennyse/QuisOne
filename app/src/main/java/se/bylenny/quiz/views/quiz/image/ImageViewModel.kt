@@ -11,10 +11,12 @@ import java.util.concurrent.TimeUnit
 
 class ImageViewModel(
     val question: Question.Image,
-    private val quizRepository: QuizRepository
+    private val quizRepository: QuizRepository,
+    private val index: Int
 ) : RecyclableItem(R.layout.image_question) {
 
-    override fun getItemId(): Any = question.id
+    override fun getItemId(): Any = index
+    override fun getDataId(): Any = question.id
 
     val timeLeft: LiveData<String> = quizRepository.timeLeft.map { timeLeftMs ->
         "${TimeUnit.MILLISECONDS.toSeconds(timeLeftMs) + 1}s"
@@ -39,7 +41,7 @@ class ImageViewModel(
     }
 
     fun onReplaceClicked() {
-        quizRepository.useLifeLineReplaceQuestion()
+        quizRepository.useLifeLineReplaceQuestion(question)
     }
 
     fun onAnswerClicked(answer: Int) {

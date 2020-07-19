@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.quiz_fragment.*
-import se.bylenny.quiz.adapter.BindingAdapter
 import se.bylenny.quiz.databinding.QuizFragmentBinding
 import se.bylenny.quiz.extensions.observe
 
@@ -16,7 +15,6 @@ import se.bylenny.quiz.extensions.observe
 class QuizFragment : Fragment() {
 
     companion object {
-        private const val TAG = "QuizFragment"
         fun newInstance() = QuizFragment()
     }
 
@@ -36,10 +34,9 @@ class QuizFragment : Fragment() {
         pager.apply {
             isUserInputEnabled = false
             offscreenPageLimit = 1
-            adapter = BindingAdapter(viewModel.pages)
         }
 
-        observe(viewModel.quizPage) { page ->
+        observe(viewModel.currentPage) { page ->
             pager.currentItem = page
         }
     }
