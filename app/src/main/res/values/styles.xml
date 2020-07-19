@@ -28,7 +28,7 @@
     </style>
 
     <style name="AppTheme.Button.Icon">
-        <item name="android:background">@drawable/rounded_shape</item>
+        <item name="android:background">@drawable/rounded_button_background</item>
         <item name="android:padding">16dp</item>
     </style>
 

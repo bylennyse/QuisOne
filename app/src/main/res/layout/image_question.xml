@@ -130,10 +130,10 @@
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:layout_marginTop="16dp"
-            android:layout_marginRight="16dp"
-            android:src="@drawable/ic_autorenew_white_24dp"
+            android:layout_marginEnd="16dp"
             android:enabled="@{safeUnbox(viewModel.replaceEnabled)}"
             android:onClick="@{() -> viewModel.onReplaceClicked()}"
+            android:src="@drawable/ic_autorenew_white_24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             />
