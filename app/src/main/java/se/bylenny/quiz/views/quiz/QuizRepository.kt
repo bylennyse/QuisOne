@@ -1,6 +1,5 @@
 package se.bylenny.quiz.views.quiz
 
-import android.os.SystemClock
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.rxjava3.core.Flowable
@@ -22,7 +21,8 @@ import kotlin.math.max
 class QuizRepository @Inject constructor(
     private val appRepository: AppRepository,
     private val questionRepository: QuestionRepository,
-    private val vibrator: Vibrator
+    private val vibrator: Vibrator,
+    private val timeKeeper: TimeKeeper
 ) {
     companion object {
         private const val TIMEOUT_MS: Int = 10 * 1000
@@ -85,7 +85,7 @@ class QuizRepository @Inject constructor(
                 question = question,
                 answered = answer,
                 isCorrect = question.correctAnswer == answer,
-                timeMs = getTime() - startTime
+                timeMs = timeKeeper.getTime() - startTime
             )
         )
         val page = question.number
@@ -93,7 +93,7 @@ class QuizRepository @Inject constructor(
             stopTimer()
             result.postValue(Result(questions, answers))
         } else {
-            startTime = getTime()
+            startTime = timeKeeper.getTime()
             endTime = startTime + TIMEOUT_MS
         }
         alternativesVisibility.postValue(SHOW_ALL)
@@ -145,7 +145,7 @@ class QuizRepository @Inject constructor(
     }
 
     private fun update() {
-        val currentTime = getTime()
+        val currentTime = timeKeeper.getTime()
         val timeLeftMs = max(endTime - currentTime, 0)
         timeLeft.postValue(timeLeftMs)
         if (timeLeftMs <= 0L) {
@@ -154,7 +154,7 @@ class QuizRepository @Inject constructor(
     }
 
     private fun startTimer() {
-        startTime = getTime()
+        startTime = timeKeeper.getTime()
         endTime = startTime + TIMEOUT_MS
         disposables += Flowable
             .interval(UPDATE_INTERVAL_MS, TimeUnit.MILLISECONDS, Schedulers.io())
@@ -168,13 +168,11 @@ class QuizRepository @Inject constructor(
     }
 
     private fun getTimeLeftInSeconds() =
-        TimeUnit.MILLISECONDS.toSeconds(endTime - getTime())
+        TimeUnit.MILLISECONDS.toSeconds(endTime - timeKeeper.getTime())
 
     private fun stopTimer() {
         disposables.clear()
     }
-
-    private fun getTime(): Long = SystemClock.elapsedRealtime()
 
     private val Question.number: Int
         get() = questions.indexOf(this) + 1

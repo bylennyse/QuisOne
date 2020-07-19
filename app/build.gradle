@@ -50,6 +50,12 @@ android {
         }
     }
 
+    testOptions {
+        unitTests.all {
+            // All the usual Gradle options.
+            jvmArgs '-XX:MaxPermSize=256m'
+        }
+    }
 }
 
 dependencies {
@@ -75,10 +81,6 @@ dependencies {
     /** RxJava **/
 
     implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
-
-    //implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    //implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
-    //implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:1.0.0-alpha01"
 
     /** Lifecycle **/
 
@@ -107,7 +109,11 @@ dependencies {
 
     /** Test **/
 
-    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit5:$kotlin_version"
+    testImplementation "io.mockk:mockk:1.10.0"
+
 }
