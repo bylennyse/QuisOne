@@ -1,0 +1,65 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccentDark</item>
+        <item name="android:colorBackground">@color/colorPrimaryDark</item>
+        <item name="colorError">@color/colorNegative</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="buttonStyle">@style/AppTheme.Button</item>
+    </style>
+
+    <style name="AppTheme.FloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="fabSize">normal</item>
+        <item name="tint">@color/colorPrimary</item>
+        <item name="backgroundTint">@color/colorAccent</item>
+        <item name="rippleColor">@color/colorAccent</item>
+        <item name="android:translationZ" tools:targetApi="lollipop">4dp</item>
+        <item name="elevation">8dp</item>
+        <item name="pressedTranslationZ">2dp</item>
+    </style>
+
+    <style name="AppTheme.Button" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/colorAccentDark</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="AppTheme.Button.Icon">
+        <item name="android:background">@drawable/rounded_shape</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
+    <style name="AppTheme.Button.Large">
+        <item name="android:textSize">24sp</item>
+        <item name="android:paddingLeft">32dp</item>
+        <item name="android:paddingRight">32dp</item>
+        <item name="android:paddingTop">24dp</item>
+        <item name="android:paddingBottom">24dp</item>
+    </style>
+
+    <style name="AppTheme.Button.Small">
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+
+    <style name="Text.Body" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Text.Headline" parent="TextAppearance.AppCompat.Headline">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Text.Caption" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+</resources>

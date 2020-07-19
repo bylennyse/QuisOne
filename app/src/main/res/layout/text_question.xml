@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="se.bylenny.quiz.views.quiz.text.TextViewModel"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        >
+
+        <TextView
+            android:id="@+id/text"
+            style="@style/Text.Headline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@{viewModel.question.text}"
+            app:layout_constraintBottom_toTopOf="@id/button1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/timeLeft"
+            tools:text="Question?"
+            />
+
+        <Button
+            android:id="@+id/button1"
+            style="@style/AppTheme.Button.Small"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:enabled="@{safeUnbox(viewModel.isAlternativeEnabled[0] ?? true)}"
+            android:onClick="@{() -> viewModel.onAnswerClicked(0)}"
+            android:text="@{viewModel.question.alternatives[0]}"
+            app:layout_constraintBottom_toTopOf="@id/button2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Option 1"
+            />
+
+        <Button
+            android:id="@+id/button2"
+            style="@style/AppTheme.Button.Small"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:enabled="@{safeUnbox(viewModel.isAlternativeEnabled[1] ?? true)}"
+            android:onClick="@{() -> viewModel.onAnswerClicked(1)}"
+            android:text="@{viewModel.question.alternatives[1]}"
+            app:layout_constraintBottom_toTopOf="@id/button3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Option 2"
+            />
+
+        <Button
+            android:id="@+id/button3"
+            style="@style/AppTheme.Button.Small"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:enabled="@{safeUnbox(viewModel.isAlternativeEnabled[2] ?? true)}"
+            android:onClick="@{() -> viewModel.onAnswerClicked(2)}"
+            android:text="@{viewModel.question.alternatives[2]}"
+            app:layout_constraintBottom_toTopOf="@id/button4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Option 3"
+            />
+
+        <Button
+            android:id="@+id/button4"
+            style="@style/AppTheme.Button.Small"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:enabled="@{safeUnbox(viewModel.isAlternativeEnabled[3] ?? true)}"
+            android:onClick="@{() -> viewModel.onAnswerClicked(3)}"
+            android:text="@{viewModel.question.alternatives[3]}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Option 4"
+            />
+
+        <TextView
+            android:id="@+id/number"
+            style="@style/Text.Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@{viewModel.pageNumberText}"
+            app:layout_constraintBottom_toBottomOf="@id/lifeLineRemoveTwo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="9/10"
+            />
+
+        <TextView
+            android:id="@+id/timeLeft"
+            style="@style/Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@{viewModel.timeLeft}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/number"
+            tools:text="0:00"
+            />
+
+        <ImageButton
+            android:id="@+id/lifeLineTime"
+            style="@style/AppTheme.Button.Icon"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/ic_more_time_white_24dp"
+            android:enabled="@{safeUnbox(viewModel.moreTimeEnabled)}"
+            android:onClick="@{() -> viewModel.onMoreTimeClicked()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <ImageButton
+            android:id="@+id/lifeLineRemoveTwo"
+            style="@style/AppTheme.Button.Icon"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/ic_support_white_24dp"
+            android:enabled="@{safeUnbox(viewModel.removeTwoEnabled)}"
+            android:onClick="@{() -> viewModel.onRemoveTwoClicked()}"
+            app:layout_constraintEnd_toStartOf="@id/lifeLineTime"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
