@@ -25,7 +25,7 @@ class QuizRepository @Inject constructor(
     private val timeKeeper: TimeKeeper
 ) {
     companion object {
-        private const val TIMEOUT_MS: Int = 10 * 1000
+        private const val TIMEOUT_MS: Long = 10 * 1000L
         private const val UPDATE_INTERVAL_MS: Long = 50L
         private const val LIFELINE_TIME_MS: Long = 10 * 1000L
         private const val VIBRATING_SECONDS: Int = 3
