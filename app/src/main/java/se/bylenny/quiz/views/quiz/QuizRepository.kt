@@ -82,12 +82,19 @@ class QuizRepository @Inject constructor(
 
     val result: MutableLiveData<Result> = MutableLiveData()
 
-    fun answer(question: Question, answer: Int) {
-        answers.add(Answer(question, answer, getTime() - startTime))
+    fun answer(question: Question, answer: Int?) {
+        answers.add(
+            Answer(
+                question = question,
+                answered = answer,
+                isCorrect = question.correctAnswer == answer,
+                timeMs = getTime() - startTime
+            )
+        )
         val page = question.number
         if (page == questions.size) {
             stopTimer()
-            result.postValue(Result(answers))
+            result.postValue(Result(questions, answers))
         } else {
             startTime = getTime()
             endTime = startTime + TIMEOUT_MS
@@ -148,7 +155,7 @@ class QuizRepository @Inject constructor(
         val timeLeftMs = max(endTime - currentTime, 0)
         timeLeft.postValue(timeLeftMs)
         if (timeLeftMs <= 0L) {
-            answer(questions[question.value!!], -1)
+            answer(questions[question.value!!], null)
         }
     }
 

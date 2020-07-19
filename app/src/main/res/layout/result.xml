@@ -19,42 +19,31 @@
         android:clipToPadding="false"
         >
 
-        <ScrollView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/result"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="32dp"
             android:layout_marginBottom="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            >
-
-            <TextView
-                android:id="@+id/resultText"
-                style="@style/Text.Caption"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:gravity="center"
-                android:textAlignment="gravity"
-                android:text="@{viewModel.text}"
-                tools:text="@tools:sample/lorem/random"
-                />
-        </ScrollView>
+            app:list="@{viewModel.list}"
+            tools:itemCount="12"
+            tools:listitem="@layout/result_text"
+            />
 
         <Button
             android:id="@+id/button"
+            style="@style/AppTheme.Button.Large"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
-            android:text="Continue"
-            style="@style/AppTheme.Button.Large"
             android:onClick="@{() -> viewModel.onContinueClicked()}"
+            android:text="Continue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Answer(
     val question: Question,
-    val option: Int,
-    val time: Long
+    val answered: Int?, // TODO Make more verbose
+    val isCorrect: Boolean,
+    val timeMs: Long
 )
